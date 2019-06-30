@@ -24,14 +24,14 @@ void menu(grafo_t* grafo) {
             system("cls");
             fflush(stdin);
             cabecalho();
-            puts("01 - Mostrar card·pio ");
+            puts("01 - Mostrar card√°pio ");
             puts("02 - Realizar pedido  ");
             puts("03 - Visualizar pedido");
             puts("04 - Finalizar pedido ");
 
             scanf("%d", &choice);
             switch(choice) {
-            case 1: // card·pio
+            case 1: // card√°pio
                 system("cls");
                 fflush(stdin);
                 cabecalho();
@@ -54,11 +54,12 @@ void menu(grafo_t* grafo) {
                 system("cls");
                 fflush(stdin);
                 if(pedido-> valor != -1 ) verPedido(pedido);
-                else puts("FaÁa um pedido primeiro!");
+                else puts("Fa√ßa um pedido primeiro!");
                 getchar();
                 continue;
 
             case 4: // fim
+                free(pedido);
                 break;
             default:
             fflush(stdin);
@@ -102,20 +103,20 @@ void cardapio() {
 void bairros() {
     setlocale(LC_CTYPE, "portuguese");
     puts("        Bairros       ");
-    puts("<00> - AgronÙmica     ");
+    puts("<00> - Agron√¥mica     ");
     puts("<01> - Campinas       ");
     puts("<02> - Capoeiras      ");
     puts("<03> - Carvoeira      ");
     puts("<04> - Centro         ");
-    puts("<05> - CÛrrego Grande ");
+    puts("<05> - C√≥rrego Grande ");
     puts("<06> - Coqueiros      ");
     puts("<07> - Estreito       ");
     puts("<08> - Itacorubi      ");
-    puts("<09> - Jo„o Paulo     ");
+    puts("<09> - Jo√£o Paulo     ");
     puts("<10> - Kobrasol       ");
     puts("<11> - Monte Verde    ");
     puts("<12> - Pantanal       ");
-    puts("<13> - Saco dos Limıes");
+    puts("<13> - Saco dos Lim√µes");
     puts("<14> - Saco Grande    ");
     puts("<15> - Trindade       ");
 }
@@ -132,12 +133,12 @@ pedido_t* fazPedido(grafo_t* grafo) {
     printf("Insira seu nome: ");
     fflush(stdin);
     gets(pedido->cliente);
-    printf("Quantos itens ser„o pedidos?");
+    printf("Quantos itens ser√£o pedidos?");
     scanf("%d", &pedido->numeroItens);
     itens = malloc(sizeof(int) * (pedido->numeroItens));
     cardapio();
     for(i = 0; i< pedido->numeroItens; i++) {
-        printf("Insira o n˙mero do item desejado de acordo com o card·pio:");
+        printf("Insira o n√∫mero do item desejado de acordo com o card√°pio:");
         scanf("%d", &itens[i]);
     }
     pedido->itens = itens;
@@ -145,7 +146,7 @@ pedido_t* fazPedido(grafo_t* grafo) {
 
     bairros();
     while(1) {
-        printf("Digite o n˙mero do seu bairro: ");
+        printf("Digite o n√∫mero do seu bairro: ");
         scanf("%d", &(pedido->bairro));
         if(pedido->bairro > 0 || pedido->bairro < 15) break;
         else continue;
@@ -174,7 +175,7 @@ void verPedido(pedido_t* pedido) {
     setlocale(LC_CTYPE, "portuguese");
     puts(" Pedido ");
     printf("Cliente: %s\n", pedido->cliente);
-    printf("N˙mero de Itens: %d\n", pedido->numeroItens);
+    printf("N√∫mero de Itens: %d\n", pedido->numeroItens);
     printf("Valor Total: R$%.2f\n", pedido->valor);
     printf("Tempo de Espera: %d minutos\n", pedido->tempoEntrega);
 

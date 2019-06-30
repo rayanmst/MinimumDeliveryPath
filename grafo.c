@@ -12,8 +12,8 @@
 
 #include "grafo.h"
 
-#define INFINITO INT_MAX
-#define MAX_VERTICES 10
+#define INFINITO (INT_MAX - 300)
+#define MAX_VERTICES 20
 
 struct vertices
 {

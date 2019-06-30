@@ -205,9 +205,6 @@ void bellman_ford (grafo_t *grafo, int fonte)
     int z;
     int j;
     vertice_t* w;
-    puts("Inicio de Bellman-Ford");
-    imprime_dados_vertice(grafo);
-    printf("\n");
     vertice_t* vertice = &(grafo->vertices[fonte]);
     vertice_t* v;
     int nova_dist;
@@ -243,8 +240,6 @@ void bellman_ford (grafo_t *grafo, int fonte)
             }
         }
     }
-
-    imprime_dados_vertice(grafo);
 }
 
 /**

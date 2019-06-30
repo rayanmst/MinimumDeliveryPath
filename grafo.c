@@ -127,7 +127,7 @@ void libera_grafo (grafo_t *g)
   *
   * @retval int: verdadeiro se adjacência for criada
   */
-int cria_adjacencia(grafo_t *g, int u, int v)
+int cria_adjacencia(grafo_t *g, int u, int v, int d)
 {
 
     if (g == NULL)
@@ -139,6 +139,9 @@ int cria_adjacencia(grafo_t *g, int u, int v)
         return 0;
 
     g->matriz_adj[u][v].adj = 1;
+    g->matriz_adj[u][v].peso = d;
+    g->matriz_adj[v][u].adj = 1;
+    g->matriz_adj[v][u].peso = d;
 
     return 1;
 }

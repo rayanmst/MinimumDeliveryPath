@@ -3,7 +3,6 @@
 #include <locale.h>
 
 #include "pedidos.h"
-#include "../grafos/grafo.h"
 
 struct pedidos {
     char* cliente;
@@ -17,9 +16,9 @@ struct pedidos {
 
 void menu(grafo_t* grafo) {
     int choice;
-    pedido_t* pedido = malloc(sizeof(pedido_t));
+    pedido_t* pedido;
     setlocale(LC_CTYPE, "portuguese");
-    pedido->valor = -1;
+    lista_enc_t* lista_pedidos = criar_lista_enc();
     while(1) {
             system("cls");
             fflush(stdin);
@@ -45,6 +44,8 @@ void menu(grafo_t* grafo) {
                 fflush(stdin);
                 cabecalho();
                 pedido = fazPedido(grafo);
+                no_t* no_pedido = criar_no(pedido);
+                add_cauda(lista_pedidos, no_pedido);
                 puts("Pressione enter para retornar ao menu");
                 fflush(stdin);
                 getchar();
@@ -53,13 +54,13 @@ void menu(grafo_t* grafo) {
             case 3: // ver pedido
                 system("cls");
                 fflush(stdin);
-                if(pedido-> valor != -1 ) verPedido(pedido);
+                if(!(lista_vazia(lista_pedidos)) ) verPedido(pedido);
                 else puts("Faça um pedido primeiro!");
                 getchar();
                 continue;
 
             case 4: // fim
-                free(pedido);
+                libera_pedidos(lista_pedidos);
                 break;
             default:
             fflush(stdin);
@@ -132,7 +133,7 @@ pedido_t* fazPedido(grafo_t* grafo) {
     cabecalho();
     printf("Insira seu nome: ");
     fflush(stdin);
-    gets(pedido->cliente);
+    scanf("%s", pedido->cliente);
     printf("Quantos itens serão pedidos?");
     scanf("%d", &pedido->numeroItens);
     itens = malloc(sizeof(int) * (pedido->numeroItens));
@@ -232,4 +233,22 @@ float valorItem(int item) {
             return 10.00;
     }
     return 0.00;
+}
+
+void libera_pedidos(lista_enc_t* lista)
+{
+    pedido_t* pedido;
+    no_t *no_ant, *no;
+    no = obter_cabeca(lista);
+    while(no)
+    {
+     pedido = obter_dado(no);
+     free(pedido->cliente);
+     free(pedido->itens);
+     free(pedido);
+     no_ant = no;
+     no = obter_proximo(no);
+     free(no_ant);
+    }
+    free(lista);
 }

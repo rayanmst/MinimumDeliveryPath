@@ -14,6 +14,8 @@ void valorTotal(pedido_t* pedido);
 void calculaTempo(pedido_t* pedido);
 float valorItem(int item);
 pedido_t* fazPedido();
+void libera_pedidos(lista_enc_t* lista);
+
 
 
 

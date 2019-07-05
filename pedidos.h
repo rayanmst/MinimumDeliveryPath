@@ -1,7 +1,8 @@
 #ifndef PEDIDOS_H_INCLUDED
 #define PEDIDOS_H_INCLUDED
 
-#include "../grafos/grafo.h"
+#include "grafo.h"
+#include "lista_enc.h"
 
 typedef struct pedidos pedido_t;
 
